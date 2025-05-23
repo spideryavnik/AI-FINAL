@@ -1,142 +1,137 @@
-# AI-Powered Survey Server
+# AI-Powered Survey Server 🧠
 
-A Node.js + Express server that supports:
-- Survey creation
-- Response submission
-- AI-based summarization and validation
-- Natural language search over surveys
-
-## 🧩 Features
-
-- 🔒 JWT-based authentication
-- 🧠 AI-driven summary and validation logic (mocked)
-- 📊 MongoDB models for users, surveys, and responses
-- ✅ RESTful API fully documented with Swagger
-- 🧪 Full Jest test coverage
-
----
+A Node.js + Express backend that allows users to create surveys, submit responses, and perform AI-based validation, summarization, and natural language search.
 
 ## 🚀 Setup Instructions
 
-### 1. Clone the repository
+### 1. Clone and Install
 
-```
-git clone <your-repo-url>
+```bash
+git clone <repo>
 cd AI-FINAL
-```
-
-### 2. Install dependencies
-
-```
 npm install
 ```
 
-### 3. Environment configuration
+### 2. Environment Configuration
 
-Create a `.env` file based on the following template:
+Create a `.env` file with the following:
 
-```
+```env
 PORT=3000
 MONGO_URI=mongodb://localhost:27017/ai-final
 JWT_SECRET=your_jwt_secret
 REGISTRATION_SECRET=testcode
+USE_MOCK_LLM=true
 ```
 
-### 4. Run the server (dev mode)
+You can also create a `.env.test` for test environment:
 
+```env
+JWT_SECRET=testsecret
+REGISTRATION_SECRET=testcode
+USE_MOCK_LLM=true
+MONGO_URI=mongodb://localhost:27017/ai-test
 ```
-npm run dev
-```
-
-The server will run at: `http://localhost:3000`
 
 ---
 
-## 🔐 Authentication
+## 📋 API Overview
 
-### Register (`POST /auth/register`)
-```json
-{
-  "username": "john",
-  "email": "john@example.com",
-  "password": "123456",
-  "registrationCode": "testcode"
-}
-```
+### 🔐 Authentication
 
-### Login (`POST /auth/login`)
-```json
-{
-  "email": "john@example.com",
-  "password": "123456"
-}
-```
+- `POST /auth/register` – `{ username, email, password, registrationCode }`
+- `POST /auth/login` – `{ email, password }` → returns `{ token }`
 
-You will receive a JWT token. Use it as `Bearer <token>` in `Authorization` headers for all other routes.
+Use the token in headers: `Authorization: Bearer <token>`
 
 ---
 
-## 📋 Survey Endpoints
+### 📝 Surveys
 
-- `POST /surveys` – Create survey
-- `POST /responses` – Submit response
-- `POST /surveys/:id/summary` – Generate AI summary
-- `GET /surveys/:id/check-responses` – Validate responses
-- `POST /search` – Search surveys by query
+- `POST /surveys` – Create survey (Authenticated)
+- `POST /surveys/:id/summary` – Generate summary (Creator only)
+- `GET /surveys/:id/check-responses` – Validate responses (Creator only)
+
+### 💬 Responses
+
+- `POST /responses` – Submit a response
+- Edit/delete responses only while survey is open
+
+### 🔍 Search
+
+- `POST /search` – Natural language search across surveys
 
 ---
 
 ## 📘 API Documentation
 
-Available at:  
+API Docs available via Swagger at:
+
 ```
 http://localhost:3000/api-docs
 ```
 
-Powered by Swagger.
+OpenAPI 3.0 spec used for full documentation.
 
 ---
 
-## 🧪 Run Tests
+## 🧪 Running Tests
 
-To run all unit tests using Jest:
-
-```
+```bash
 npm test
 ```
 
-Includes tests for:
-- Authentication
-- Survey creation
-- Responses
-- Search
+This runs Jest-based unit and API tests using `mongodb-memory-server`.
+
+### 📊 Test Coverage
+
+To check test coverage:
+
+```bash
+npm test -- --coverage
+```
+
+Coverage should be ≥70% for statements, branches, functions, and lines.
+
+---
+
+## 🧠 AI Mocking
+
+LLM calls (summarization, validation, search) are fully mocked during tests. No real API call is made when `USE_MOCK_LLM=true` is set.
+
+Mocks are implemented in:
+
+```
+tests/__mocks__/llmService.js
+```
 
 ---
 
 ## 📁 Project Structure
 
 ```
-.
-├── controllers/
-├── models/
-├── routes/
-├── services/
-├── middlewares/
-├── utils/
-├── tests/
+AI-FINAL/
 ├── app.js
 ├── server.js
+├── controllers/
+├── routes/
+├── services/
+├── models/
+├── middlewares/
+├── prompts/
+├── utils/
+├── tests/
+│   └── __mocks__/llmService.js
+├── .env
+├── .env.test
 ├── swagger.js
-└── .env.example
 ```
 
 ---
 
-## 📬 Notes
+## ⚠️ Note
 
-- AI functionality (summarization + validation) is mocked for demonstration.
-- All routes require a valid JWT token except registration and login.
-- Survey expiry is validated on each response submission.
+Although Chai is mentioned in the original specification, this project uses **only Jest** for testing and assertions.
 
 ---
 

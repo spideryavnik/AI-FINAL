@@ -3,7 +3,6 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import SurveyForm from './components/SurveyForm';
 import SearchSurveys from './components/SearchSurveys';
-import './App.css';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));

@@ -34,6 +34,18 @@ MONGO_URI=mongodb://localhost:27017/ai-test
 ```
 
 ---
+### 3. Run Frontend 
+```
+cd client
+npm install
+npm run dev
+```
+The frontend should be available at:
+```
+http://localhost:5173/
+```
+Make sure the backend (PORT=3000) is also running and properly configured for CORS.
+---
 
 ## 📋 API Overview
 
@@ -120,11 +132,14 @@ AI-FINAL/
 ├── middlewares/
 ├── prompts/
 ├── utils/
+├── client/                 
+│   └── src/
 ├── tests/
-│   └── __mocks__/llmService.js
+│   └── __mocks__/
 ├── .env
 ├── .env.test
 ├── swagger.js
+
 ```
 
 ---
@@ -134,8 +149,3 @@ AI-FINAL/
 Although Chai is mentioned in the original specification, this project uses **only Jest** for testing and assertions.
 
 ---
-
-## 🧑‍💻 Author
-
-Developed by Daniel Yavnik  
-Academic College of Tel Aviv-Yaffo

@@ -63,7 +63,7 @@ input, button {
   border-radius: 8px;
   border: none;
   font-size: 1rem;
-  background: #232526;
+  background: #4a4a4e;
   color: #e0e6ed;
   box-shadow: 0 2px 8px rgba(44,83,100,0.1);
   transition: background 0.2s, box-shadow 0.2s;

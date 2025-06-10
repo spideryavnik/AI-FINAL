@@ -34,10 +34,10 @@ export default function SurveyForm({ token }) {
   return (
     <form onSubmit={handleSubmit}>
       <h2>Create Survey</h2>
-      <input name="area" value={form.area} onChange={handleChange} placeholder="Area" required />
-      <input name="question" value={form.question} onChange={handleChange} placeholder="Question" required />
+      <input name="area" value={form.area} onChange={handleChange} placeholder="Area *" required />
+      <input name="question" value={form.question} onChange={handleChange} placeholder="Question *" required />
       <input name="expiryDate" type="datetime-local" value={form.expiryDate} onChange={handleChange} required />
-      <input name="guidelines" value={form.guidelines} onChange={handleChange} placeholder="Guidelines" required />
+      <input name="guidelines" value={form.guidelines} onChange={handleChange} placeholder="Guidelines *" required />
       <input name="permittedDomains" value={form.permittedDomains} onChange={handleChange} placeholder="Permitted Domains (comma-separated)" />
       <input name="permittedResponses" value={form.permittedResponses} onChange={handleChange} placeholder="Permitted Responses (comma-separated)" />
       <input name="summaryInstructions" value={form.summaryInstructions} onChange={handleChange} placeholder="Summary Instructions" />

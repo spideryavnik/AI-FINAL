@@ -4,7 +4,7 @@
   "description": "AI-powered survey backend with JWT, MongoDB and OpenAI",
   "main": "server.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --coverage --testPathIgnorePatterns=/client/",
     "dev": "nodemon server.js"
   },
   "keywords": [],

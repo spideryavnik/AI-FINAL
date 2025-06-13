@@ -20,7 +20,7 @@ Create a `.env` file with the following:
 PORT=3000
 MONGO_URI=mongodb://localhost:27017/ai-final
 JWT_SECRET=your_jwt_secret
-REGISTRATION_SECRET=testcode
+REGISTRATION_SECRET=myregcode
 USE_MOCK_LLM=true
 ```
 
@@ -28,7 +28,7 @@ You can also create a `.env.test` for test environment:
 
 ```env
 JWT_SECRET=testsecret
-REGISTRATION_SECRET=testcode
+REGISTRATION_SECRET=myregcode
 USE_MOCK_LLM=true
 MONGO_URI=mongodb://localhost:27017/ai-test
 ```

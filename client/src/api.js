@@ -19,3 +19,8 @@ export const searchSurveys = (query, token) =>
   API.post('/search', { query }, {
     headers: { Authorization: `Bearer ${token}` },
   });
+
+export const submitResponse = (surveyId, text, token) =>
+  API.post('/responses', { surveyId, text }, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
